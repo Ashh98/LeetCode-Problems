@@ -16,12 +16,9 @@ public:
         low = low/2; high = high/2;
         h = h-1;
         while (label > 1) {          
-            cout << low << " " << high-1 << " " << label << endl;
             ldiff = abs(low - label); hdiff = abs(high - 1 - label);
-            cout << ldiff << " " << hdiff << " " << h << endl;
             if (ldiff < hdiff) path[h-1] = high-ldiff-1;
             else path[h-1] = hdiff + low;
-            cout << path[h-1] << endl;
             label = path[h-1]/2; low = low/2; high = high/2; h = h-1;
         }
         return path;
