@@ -16,7 +16,7 @@ public:
     int goodNodes(TreeNode* root, int prev) {
         int x;
         if (root) {
-            if (prev == INT_MAX) x = root->val;
+            if (prev == INT_MIN) x = root->val;
             else {
                 if (root->val >= prev) {
                     count++;
@@ -24,13 +24,12 @@ public:
                 }
                 else x = prev;
             }
-            cout << prev << " " << root->val << " " << count << endl;
             goodNodes(root->left, x);
             goodNodes(root->right, x);
         }
         return count;
     }
     int goodNodes(TreeNode* root) {
-        return goodNodes(root, INT_MAX);
+        return goodNodes(root, INT_MIN);
     }
 };
