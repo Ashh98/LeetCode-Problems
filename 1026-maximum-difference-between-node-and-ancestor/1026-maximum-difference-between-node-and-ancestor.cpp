@@ -11,25 +11,21 @@
  */
 class Solution {
 public:    
-    int max = 0;
-    int maxAncestorDiff(TreeNode* root, vector<int> path) {
+    int max_diff = INT_MIN;
+    int maxAncestorDiff(TreeNode* root, int mn, int mx) {
         if (root) {
-            if (path.size() == 0) {
-                path.push_back(root->val);
-            } else {
-                for (auto& i: path) {
-                    if (abs(root->val - i) > max) max = abs(root->val - i);
-                }
-                path.push_back(root->val);
-            }
-            maxAncestorDiff(root->left, path);
-            maxAncestorDiff(root->right, path);
+            mn = min(mn, root->val);
+            mx = max(mx, root->val);
+            maxAncestorDiff(root->left, mn, mx);
+            maxAncestorDiff(root->right, mn, mx);
+        } else {
+            max_diff = max(max_diff, abs(mn-mx));
         }
-        return max;
+        return max_diff;
     }
     
     int maxAncestorDiff(TreeNode* root) {
-        vector<int> path;
-        return maxAncestorDiff(root, path);
+        int mn = INT_MAX, mx = INT_MIN;
+        return maxAncestorDiff(root, mn, mx);
     }
 };
