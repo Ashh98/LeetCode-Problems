@@ -15,19 +15,19 @@ public:
     TreeNode* mainRoot;
     
     FindElements(TreeNode* root) {
-        mainRoot = Trav(root, 0);
+        Trav(root, 0);
     }
     
-    TreeNode* Trav(TreeNode* root, int prev) {
+    void Trav(TreeNode* root, int prev) {
         if (root) {
             if (c == 0) {
                 root->val = 0;
+                mainRoot = root;
                 c++;
             } else root->val = prev;
             if (root->left) Trav(root->left, (2*root->val) + 1);
             if (root->right) Trav(root->right, (2*root->val) + 2);
         }
-        return root;
     }
     
     bool findOP(TreeNode* root, int target, bool& res) {
