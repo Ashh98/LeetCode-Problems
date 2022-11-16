@@ -10,8 +10,6 @@ public:
     vector<string> insert(int idKey, string value) { 
         vector<string> currRes;
         res[idKey-1] = value;
-        //cout << idKey-1 << " " << res[idKey-1] << endl;
-        //int i = ptr;
         while (res[ptr] != " ") {
             currRes.push_back(res[ptr]);
             ptr++;
