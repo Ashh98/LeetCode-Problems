@@ -3,8 +3,7 @@ public:
     queue<int> q1;
     queue<int> q2;
     MyStack() {
-        q1.push(1); q1.pop();
-        q2.push(1); q2.pop();
+        cout << "Stack is initiated!";
     }
     
     void push(int x) {
