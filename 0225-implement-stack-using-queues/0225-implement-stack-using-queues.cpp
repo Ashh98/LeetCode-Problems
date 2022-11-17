@@ -3,14 +3,13 @@ public:
     queue<int> q1;
     queue<int> q2;
     MyStack() {
-        cout << "Stack is initiated!";
+        q1.push(0); q1.pop();
     }
     
     void push(int x) {
         if (q1.empty()) {
-           if (q2.empty()) {
-               q1.push(x);
-           } else {
+           if (q2.empty()) q1.push(x);
+           else {
                q1.push(x);
                while (!q2.empty()) {
                    q1.push(q2.front());
