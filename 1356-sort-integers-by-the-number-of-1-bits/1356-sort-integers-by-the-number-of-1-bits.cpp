@@ -12,7 +12,7 @@ public:
     
     void insertionSort(vector<int>& arr) {
         int hole;
-        for (int i = 0; i < arr.size(); i++) {
+        for (int i = 1; i < arr.size(); i++) {
             hole = i;
             while (hole > 0 && arr[hole-1] > arr[hole]) {
                 swap(arr[hole-1], arr[hole]);
