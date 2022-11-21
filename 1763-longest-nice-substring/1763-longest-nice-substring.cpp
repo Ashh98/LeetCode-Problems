@@ -1,8 +1,6 @@
 class Solution {
 public:
-    
-    
-    bool checkNice(string s) {
+    bool checkNice(string& s) {
         unordered_map<char, char> ump;
         for (auto& i : s) {
             if (ump.find(i) == ump.end()) ump.insert({i, i});
@@ -20,15 +18,14 @@ public:
     
     string longestNiceSubstring(string s) {
         int n = s.size(); string res = "";
-        
         for (int i = 2; i <= n; i++) {
             for (int j = 0; j <= n-i; j++) {
-                if (checkNice(s.substr(j, i))) {
-                    if (s.substr(j, i).size() > res.size()) res = s.substr(j, i);
+                string test = s.substr(j, i);
+                if (checkNice(test)) {
+                    if (test.size() > res.size()) res = test;
                 }
             }
         }
-        
         return res;
     }
 };
