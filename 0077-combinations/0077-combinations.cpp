@@ -2,7 +2,7 @@ class Solution {
 public:
     vector<vector<int>> res;
     
-    void combine(int n, int k, int ind, vector<int> tmp) {
+    void combine(int n, int k, int ind, vector<int>& tmp) {
         if (k > 0) {
             while (ind <= n) {
                 tmp.push_back(ind);
@@ -14,7 +14,8 @@ public:
     }
     
     vector<vector<int>> combine(int n, int k) {
-        combine(n, k, 1, {});
+        vector<int> tmp = {};
+        combine(n, k, 1, tmp);
         return res;
     }
 };
