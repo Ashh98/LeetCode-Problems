@@ -2,14 +2,18 @@ class Solution {
 public:
     int res = 0;
     int triangularSum(vector<int>& nums) {
-        vector<int> tmp;
-        if (nums.size() == 1) {
+        int arrSize = nums.size();
+        if (arrSize == 1) {
             res = nums[0];
         } else {
-            for (int i = 0; i < nums.size()-1; i++) {
-                tmp.push_back((nums[i]+nums[i+1])%10);
+            for (int i = 0; i < arrSize - 1; i++) {
+                nums.push_back((nums[i]+nums[i+1])%10);
             }
-            nums = tmp;
+            reverse(nums.begin(), nums.end());
+            for (int i = nums.size()-1; i >= nums.size()-arrSize; i--) {
+                nums.pop_back();
+            }
+            reverse(nums.begin(), nums.end());
             triangularSum(nums);
         }
         return res;
