@@ -1,8 +1,15 @@
 class Solution {
 public:
-    int maximumXOR(vector<int>& nums) {
-        int max = 0; int mult = 1; int num = 0; int max_ind = 0;
+    int getXOR(vector<int>& arr) {
         int xor_res = 0;
+        for (auto& i : arr) {
+            xor_res ^= i;
+        }
+        return xor_res;
+    }
+    
+    int maximumXOR(vector<int>& nums) {
+        int max = 0, mult = 1, num = 0, max_ind = 0, element = 0;
         for (auto& i : nums) {
             if (i > max) max = i;
         }
@@ -18,24 +25,19 @@ public:
         while (mult) {
             num = 0; max_ind = 0; max = 0;
             for (int i = 0; i < nums.size(); i++) {
-                if (((nums[i] & ((mult*2)-1)) ^ mult) == (nums[i] & ((mult*2)-1)) - mult) {
+                element = (nums[i] & ((mult*2)-1));
+                if ((element ^ mult) == (element - mult)) {
                     num++;
-                    if ((nums[i] & ((mult*2)-1)) > max) {
-                        max = (nums[i] & ((mult*2)-1));
+                    if (element > max) {
+                        max = element;
                         max_ind = i;
                     }
                 }
             }
-
             if (num%2 == 0) nums[max_ind] = nums[max_ind] & (nums[max_ind] ^ mult);
-            
             mult /= 2;
         }
         
-        for (auto& i : nums) {
-            xor_res ^= i;
-        }
-        
-        return xor_res;
+        return getXOR(nums);
     }
 };
