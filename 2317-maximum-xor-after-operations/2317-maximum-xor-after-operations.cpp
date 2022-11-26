@@ -9,19 +9,11 @@ public:
     }
     
     int maximumXOR(vector<int>& nums) {
-        int max = 0, mult = 1, num = 0, ind = 0, element = 0;
-        for (auto& i : nums) {
-            if (i > max) max = i;
-        }
-        
-        while (true) {
-            if (max > mult) mult *= 2;
-            else {
-                mult /= 2;
-                break;
-            }
-        }
-        
+        int num = 0, ind = 0, element = 0, max_ele = *max_element(nums.begin(), nums.end());
+        int mult;
+        if (max_ele == 0) mult = 1;
+        else mult = pow(2, (int) log2(*max_element(nums.begin(), nums.end())));
+
         while (mult) {
             num = 0; ind = 0;
             for (int i = 0; i < nums.size(); i++) {
