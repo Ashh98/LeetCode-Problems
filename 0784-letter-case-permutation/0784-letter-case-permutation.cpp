@@ -14,10 +14,8 @@ public:
                 if (isalpha(s[ind])) {
                     if (tmp%2) s[ind] = toupper(s[ind]);
                     tmp >>= 1;
-                    ind++;
-                } else {
-                    ind++;
                 }
+                ind++;
             }
             res.push_back(s);
         } 
