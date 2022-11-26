@@ -10,7 +10,6 @@ public:
     int countTriplets(vector<int>& arr) {
         int c = 0, a = 0, b = 0; int i = 0;
         int xor_res = getXOR(arr), tmp_res = 0;
-        cout << xor_res << endl;
         for (int j = arr.size()-1; j >= i; j--) {
             if (j+1 <= arr.size()-1) xor_res ^= arr[j+1];
             tmp_res = xor_res;
