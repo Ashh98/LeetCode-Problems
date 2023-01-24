@@ -19,44 +19,32 @@ public:
                 charMin = CHAR_MAX;
                 count = 0;
                 for (auto& i : ump) {
-                    if (i.first > track && i.second > 0) {
-                        if (i.first < charMin) charMin = i.first;
-                    }
+                    if (i.first > track && i.second > 0) if (i.first < charMin) charMin = i.first;
                     if (i.second == 0) count++;
                 }
-                if (charMin == CHAR_MAX) {
-                    break;
-                }
+                if (charMin == CHAR_MAX) break;
                 ump[charMin]--;
                 result.push_back(charMin);
                 track = charMin;
             }
             
-            if (count == ump.size()) {
-                break;
-            }
+            if (count == ump.size()) break;
             
             track = CHAR_MAX;
             while (true) {
                 charMax = CHAR_MIN;
                 count = 0;
                 for (auto& i : ump) {
-                    if (i.first < track && i.second > 0) {
-                        if (i.first > charMax) charMax = i.first;
-                    }
+                    if (i.first < track && i.second > 0) if (i.first > charMax) charMax = i.first;
                     if (i.second == 0) count++;
                 }
-                if (charMax == CHAR_MIN) {
-                    break;
-                }
+                if (charMax == CHAR_MIN) break;
                 ump[charMax]--;
                 result.push_back(charMax);
                 track = charMax;
             }
             
-            if (count == ump.size()) {
-                break;
-            }
+            if (count == ump.size()) break;
         }
         
 
