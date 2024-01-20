@@ -2,7 +2,7 @@ class Solution {
 public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
         unordered_map<int, int> ump;
-        unordered_set<int> result;
+        vector<vector<int>> res(nums.size()+1);
         vector<int> vec_res;
         
         for (int i = 0; i < nums.size(); i++) {
@@ -14,16 +14,18 @@ public:
         }
         
         
-        for (int i = 0; i < k; i++) {
-            int maxEle = INT_MIN, num;
-            for (auto& i : ump) {
-                if (i.second > maxEle && result.find(i.first) == result.end()) {
-                    num = i.first; maxEle = i.second;
-                }
-            }
-            result.insert(num);
+        for (auto & i : ump) {
+            res[i.second].push_back(i.first);
         }
-        vec_res.insert(vec_res.end(), result.begin(), result.end());
-        return vec_res;
+        
+        for (int i = res.size()-1; i >= 0; i--) {
+            for (int j = 0; j < res[i].size(); j++) {
+                vec_res.push_back(res[i][j]);
+                k--;
+                if (k==0) return vec_res;
+            }
+        }
+        
+        return {};
     }
 };
