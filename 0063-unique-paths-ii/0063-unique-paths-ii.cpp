@@ -1,8 +1,8 @@
 class Solution {
 public:
-    long long uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
+    long uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
         if (obstacleGrid[0][0] == 1) return 0;
-        vector<vector<long long>> dp(obstacleGrid.size()+2, vector<long long>(obstacleGrid[0].size()+2, 0));
+        vector<vector<long>> dp(obstacleGrid.size()+2, vector<long>(obstacleGrid[0].size()+2, 0));
         dp[1][1]=2;
         
         for (int i = 1; i < dp.size()-1; i++) {
