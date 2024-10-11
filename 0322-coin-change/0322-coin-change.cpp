@@ -14,9 +14,8 @@ public:
         
         for (auto& coin : coins) {
             int subproblem = coinChange(coins, amount - coin);
-            if (subproblem >= 0) { 
+            if (subproblem >= 0) 
                 answer = min(answer, subproblem + 1);
-            }
         }
         
         memo[amount] = (answer == INT_MAX) ? -1 : answer;
