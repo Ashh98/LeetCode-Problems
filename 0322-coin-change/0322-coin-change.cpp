@@ -1,19 +1,26 @@
 class Solution {
 public:
-    long coinChange(vector<int>& coins, long amount) {
-        vector<long> dp(amount+1, INT_MAX);
-        dp[0] = 0;
+    unordered_map<int, int> memo;
+    
+    int coinChange(vector<int>& coins, int amount) {
+        if (amount == 0)
+            return 0;
+        else if (amount < 0)
+            return -1;
         
-        for (long i = 0; i < dp.size(); i++) {
-            if (dp[i] == INT_MAX) continue;
-            for (auto& coin : coins) {
-                long fwd_subp_amount = i+coin;
-                if (fwd_subp_amount <= amount) {
-                    dp[fwd_subp_amount] = min(dp[fwd_subp_amount], dp[i]+1);
-                }
-            }
+        int answer = INT_MAX;
+        
+        if (memo.find(amount) != memo.end())
+            return memo[amount];
+        
+        for (auto& coin : coins) {
+            int subproblem = coinChange(coins, amount-coin);
+            if (subproblem >= 0)
+                answer = min(answer, subproblem+1);
         }
         
-        return dp[amount] == INT_MAX? -1 : dp[amount];
+        memo[amount] = answer == INT_MAX ? -1 : answer;
+        
+        return memo[amount];
     }
 };
